@@ -121,7 +121,7 @@ let package = Package(
         "_GoogleUtilities",
         "_nanopb"
       ],
-      path: "Sources/FirebaseAnalytics"
+      path: "Sources/FirebaseAnalyticsWithoutAdIdSupport"
     ),
     .target(
       name: "FirebaseAnalyticsTarget",
