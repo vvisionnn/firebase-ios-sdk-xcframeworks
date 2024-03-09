@@ -308,7 +308,7 @@ preprocesing_firebase_sdk() {
     echo "FirebaseAnalyticsWithoutAdIdSupport already exists"
     exit 1
   fi
-  mv -r FirebaseAnalytics FirebaseAnalyticsWithoutAdIdSupport
+  mv FirebaseAnalytics FirebaseAnalyticsWithoutAdIdSupport
   rm -rf FirebaseAnalyticsWithoutAdIdSupport/GoogleAppMeasurementIdentitySupport.xcframework
   echo "FirebaseAnalyticsWithoutAdIdSupport is ready for distribution"
 }
