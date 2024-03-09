@@ -12,10 +12,6 @@ let package = Package(
       targets: ["FirebaseABTestingTarget"]
     ),
     .library(
-      name: "FirebaseAnalyticsWithoutAdIdSupport",
-      targets: ["FirebaseAnalyticsWithoutAdIdSupportTarget"]
-    ),
-    .library(
       name: "FirebaseAnalytics",
       targets: ["FirebaseAnalyticsTarget"]
     ),
@@ -103,25 +99,6 @@ let package = Package(
         "_FirebaseABTesting"
       ],
       path: "Sources/FirebaseABTesting"
-    ),
-    .target(
-      name: "FirebaseAnalyticsWithoutAdIdSupportTarget",
-      dependencies: [
-        "Firebase",
-        "_FBLPromises",
-        "_FirebaseAnalytics",
-        "_FirebaseCore",
-        "_FirebaseCoreInternal",
-        "_FirebaseInstallations",
-        "_GoogleAppMeasurement",
-        // remove GoogleAppMeasurementIdentitySupport link to remove the APID
-        // https://github.com/firebase/firebase-ios-sdk/issues/9609
-        // https://github.com/firebase/firebase-ios-sdk/pull/9630
-        // "_GoogleAppMeasurementIdentitySupport",
-        "_GoogleUtilities",
-        "_nanopb"
-      ],
-      path: "Sources/FirebaseAnalytics"
     ),
     .target(
       name: "FirebaseAnalyticsTarget",
