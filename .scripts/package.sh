@@ -348,7 +348,7 @@ if [[ $latest != $current || $debug ]]; then
     cd $scratch
     home=$OLDPWD
     echo "Downloading latest release..."
-    gh release download --pattern 'Firebase.zip' --repo $firebase_repo
+    gh release download $latest --pattern 'Firebase.zip' --repo $firebase_repo
     echo "Unzipping.."
     unzip -q Firebase.zip
     echo "Preparing xcframeworks for distribution..."
