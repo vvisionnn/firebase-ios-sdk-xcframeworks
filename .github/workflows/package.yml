@@ -2,8 +2,12 @@ name: Publish Release
 
 on:
   workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release ex.: "10.22.0" (leave blank for latest)'
+        required: false
   schedule:
-    - cron: '*/60 */2 * * *' # Every 2 hours
+    - cron: "0 0 * * *" # Every day at 00:00
 
 jobs:
   build:
@@ -16,4 +20,4 @@ jobs:
         run: echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
 
       - name: Release
-        run: cd .scripts && sh ./package.sh
+        run: cd .scripts && sh ./package.sh ${{ github.event.inputs.version }}
