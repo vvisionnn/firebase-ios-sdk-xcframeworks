@@ -292,24 +292,13 @@ commit_changes() {
   gh pr create --fill
 }
 
-# Create a new FirebaseAnalyticsWithoutAdIdSupport framework for distribution
-# reference:
-# https://github.com/firebase/firebase-ios-sdk/blob/main/ReleaseTooling/Template/README.md#integration-instructions
-# 1. duplicate FirebaseAnalytics
-# 2. rename FirebaseAnalytics to FirebaseAnalyticsWithoutAdIdSupport
-# 3. remove GoogleAppMeasurementIdentitySupport.xcframework from FirebaseAnalyticsWithoutAdIdSupport
 preprocesing_firebase_sdk() {
   echo "Preprocessing Firebase SDK (FirebaseAnalyticsWithoutAdIdSupport) for distribution..."
   if [ ! -d "FirebaseAnalytics" ]; then
     echo "FirebaseAnalytics not found"
     exit 1
   fi
-  if [ -d "FirebaseAnalyticsWithoutAdIdSupport" ]; then
-    echo "FirebaseAnalyticsWithoutAdIdSupport already exists"
-    exit 1
-  fi
-  cp -r FirebaseAnalytics FirebaseAnalyticsWithoutAdIdSupport
-  rm -rf FirebaseAnalyticsWithoutAdIdSupport/GoogleAppMeasurementIdentitySupport.xcframework
+  rm -rf FirebaseAnalytics/GoogleAppMeasurementIdentitySupport.xcframework
   echo "FirebaseAnalyticsWithoutAdIdSupport is ready for distribution"
 }
 
