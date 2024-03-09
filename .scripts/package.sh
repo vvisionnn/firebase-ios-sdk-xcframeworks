@@ -166,10 +166,9 @@ write_target() {
       dependencies: [
         \"Firebase\"" >>$output
   # All targets depend on the core FirebaseAnalytics binaries
-  # update to using `FirebaseAnalyticsWithoutAdIdSupport` instead of `FirebaseAnalytics`
-  if [ $target != "FirebaseAnalyticsWithoutAdIdSupport" ]; then
+  if [ $target != "FirebaseAnalyticsTarget" ]; then
     printf ",
-        \"FirebaseAnalyticsWithoutAdIdSupport\"" >>$output
+        \"FirebaseAnalyticsTarget\"" >>$output
   fi
   # Library specific dependencies are expected to be inside the $library folder
   echo "$dependencies" | while read -r dependency; do
