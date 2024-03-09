@@ -326,14 +326,17 @@ xcframeworks_repo="https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks"
 latest=$(latest_release_number $firebase_repo)
 current=$(latest_release_number $xcframeworks_repo)
 
-# check if custom version provided
+# Args
 if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   latest=$1
 fi
+debug=$2
+skip_release=$3
 
-# Args
-debug=$(echo $@ || "" | grep debug)
-skip_release=$(echo $@ || "" | grep skip-release)
+echo "Latest release: $latest"
+echo "Current release: $current"
+echo "Debug: $debug"
+echo "Skip release: $skip_release"
 
 if [[ $latest != $current || $debug ]]; then
   echo "$current is out of date. Updating to $latest..."
