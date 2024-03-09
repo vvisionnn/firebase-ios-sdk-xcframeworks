@@ -382,16 +382,25 @@ if [[ $latest != $current || $debug ]]; then
 
   echo "Moving files to repo..."
   cd ..
+  current_dir=$(pwd)
+  echo "Current directory: $current_dir"
+  echo "Scratch directory: $scratch"
+  echo Removing $current_dir/$sources
   # Remove any existing files
   if [ -d $sources ]; then rm -rf "$sources"; fi
+  echo Removing $current_dir/$distribution
   if [ -f $package ]; then rm -f "$package"; fi
-  # Move generated files into the repo directory
+  echo Moving $scratch/$sources to $current_dir/$sources
   mv "$scratch/$sources" "$sources"
+
+  echo Moving $scratch/$package to $current_dir/$package
   mv "$scratch/$package" "$package"
+
+  echo "Committing changes..."
 
   # Skips deploy
   if [[ $skip_release ]]; then
-    echo "Done."
+    echo "Skipping release, done."
     exit 0
   fi
 
@@ -404,4 +413,4 @@ else
   echo "$current is up to date."
 fi
 
-echo "Done."
+echo "All Done."
