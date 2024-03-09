@@ -20,10 +20,6 @@ let package = Package(
       targets: ["FirebaseAnalyticsOnDeviceConversionTarget"]
     ),
     .library(
-      name: "FirebaseAnalyticsWithoutAdIdSupport",
-      targets: ["FirebaseAnalyticsWithoutAdIdSupportTarget"]
-    ),
-    .library(
       name: "FirebaseAppCheck",
       targets: ["FirebaseAppCheckTarget"]
     ),
@@ -114,7 +110,6 @@ let package = Package(
         "_FirebaseCoreInternal",
         "_FirebaseInstallations",
         "_GoogleAppMeasurement",
-        "_GoogleAppMeasurementIdentitySupport",
         "_GoogleUtilities",
         "_nanopb"
       ],
@@ -129,22 +124,6 @@ let package = Package(
         .target(name: "_GoogleAppMeasurementOnDeviceConversion", condition: .when(platforms: [.iOS]))
       ],
       path: "Sources/FirebaseAnalyticsOnDeviceConversion"
-    ),
-    .target(
-      name: "FirebaseAnalyticsWithoutAdIdSupportTarget",
-      dependencies: [
-        "Firebase",
-        "FirebaseAnalyticsTarget",
-        "_FBLPromises",
-        "_FirebaseAnalytics",
-        "_FirebaseCore",
-        "_FirebaseCoreInternal",
-        "_FirebaseInstallations",
-        "_GoogleAppMeasurement",
-        "_GoogleUtilities",
-        "_nanopb"
-      ],
-      path: "Sources/FirebaseAnalyticsWithoutAdIdSupport"
     ),
     .target(
       name: "FirebaseAppCheckTarget",
@@ -364,7 +343,7 @@ let package = Package(
     .binaryTarget(
       name: "_FBLPromises",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_FBLPromises.xcframework.zip",
-      checksum: "ca6f74a3e8a33a47a0986ddbb28669389e89dba73712c3430c43f45ef09f7c4a"
+      checksum: "89a72681c090a7011740d28fdadd821c02a54676968a1a254f65277b9edb61ff"
     ),
     .binaryTarget(
       name: "_FirebaseABTesting",
@@ -374,7 +353,7 @@ let package = Package(
     .binaryTarget(
       name: "_FirebaseAnalytics",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_FirebaseAnalytics.xcframework.zip",
-      checksum: "2510b63748d7966fa66938c085afb29bb3fd540ff4c197b95dfd8d39672caa2d"
+      checksum: "d7f2796bcb91afe6a83a27aab84283c731e8520d04b250828dc39f3453b5c443"
     ),
     .binaryTarget(
       name: "_FirebaseAnalyticsOnDeviceConversion",
@@ -409,7 +388,7 @@ let package = Package(
     .binaryTarget(
       name: "_FirebaseCore",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_FirebaseCore.xcframework.zip",
-      checksum: "ff31b2a98e1a9f16197278fb9c90ce87ee01d895d64103653f35b5734ffe4028"
+      checksum: "ebdef593e95b0e4811a11b2f097cc8390aa273d9d4d52cc6ef86ce3d8adbd5aa"
     ),
     .binaryTarget(
       name: "_FirebaseCoreExtension",
@@ -419,7 +398,7 @@ let package = Package(
     .binaryTarget(
       name: "_FirebaseCoreInternal",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_FirebaseCoreInternal.xcframework.zip",
-      checksum: "2ec5e11df36a73a250b542f7c985f4bef5ec77f310ee2ec8d5b458c629599a13"
+      checksum: "3b938bc6658f1288551458f3f018ea601f0b7ee1c26bb9b96a3d04a79a8bccd6"
     ),
     .binaryTarget(
       name: "_FirebaseCrashlytics",
@@ -459,7 +438,7 @@ let package = Package(
     .binaryTarget(
       name: "_FirebaseInstallations",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_FirebaseInstallations.xcframework.zip",
-      checksum: "89518fdef0e7f55994320ca1f2f6a553a41fac373216adbc36822019e27aa078"
+      checksum: "8a7f7ae54508dff5c669d45f7d9449547c35c2c7248e5dd75c5e2918d9ddc682"
     ),
     .binaryTarget(
       name: "_FirebaseMLModelDownloader",
@@ -514,12 +493,7 @@ let package = Package(
     .binaryTarget(
       name: "_GoogleAppMeasurement",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_GoogleAppMeasurement.xcframework.zip",
-      checksum: "58303f41bd18443295ba0e9ee8d6edf4d74633d06901d26668b62b7bc04cd8ea"
-    ),
-    .binaryTarget(
-      name: "_GoogleAppMeasurementIdentitySupport",
-      url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_GoogleAppMeasurementIdentitySupport.xcframework.zip",
-      checksum: "34b56f95bb610e5edd3ef4b9451f8440a8bd0a0ccf731e26fdb65a64f7b35435"
+      checksum: "d5a8e51f1b120216aadf6ddc99e971519bf70f105aadbadc137fe317fd43c56b"
     ),
     .binaryTarget(
       name: "_GoogleAppMeasurementOnDeviceConversion",
@@ -544,7 +518,7 @@ let package = Package(
     .binaryTarget(
       name: "_GoogleUtilities",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_GoogleUtilities.xcframework.zip",
-      checksum: "37ffa538bd3d26a12f4c3eeb7a52ea904d6f39bbb2e89d23d8c0c99111c36622"
+      checksum: "aa90083cf20fca45fd077a901ff478106530e4b2bbe7db461c6e46a6f073fe3d"
     ),
     .binaryTarget(
       name: "_Promises",
@@ -589,7 +563,7 @@ let package = Package(
     .binaryTarget(
       name: "_nanopb",
       url: "https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks/releases/download/10.22.0/_nanopb.xcframework.zip",
-      checksum: "625fe79cc86ad3aa2925d37cb62c9fd6bb32f72efa8bea50faf6abca4f775f38"
+      checksum: "323be94289d253bbcab7a4a55482301b4d086f8c3551282ea2e0e21db2cdac52"
     ),
     .binaryTarget(
       name: "_openssl_grpc",
