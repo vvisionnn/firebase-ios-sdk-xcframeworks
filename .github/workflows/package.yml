@@ -7,7 +7,7 @@ on:
         description: 'Version to release ex.: "10.22.0" (leave blank for latest)'
         required: false
   schedule:
-    - cron: "0 0 * * *" # Every day at 00:00
+    - cron: "0 0 */15 * *" # Every 15 days
 
 jobs:
   build:
