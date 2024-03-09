@@ -268,13 +268,36 @@ commit_changes() {
     gh pr create --fill
 }
 
+
+# Create a new FirebaseAnalyticsWithoutAdIdSupport framework for distribution
+# reference:
+# https://github.com/firebase/firebase-ios-sdk/blob/main/ReleaseTooling/Template/README.md#integration-instructions
+# 1. duplicate FirebaseAnalytics
+# 2. rename FirebaseAnalytics to FirebaseAnalyticsWithoutAdIdSupport
+# 3. remove GoogleAppMeasurementIdentitySupport.xcframework from FirebaseAnalyticsWithoutAdIdSupport
+preprocesing_firebase_sdk() {
+  echo "Preprocessing Firebase SDK (FirebaseAnalyticsWithoutAdIdSupport) for distribution..."
+  if [ ! -d "FirebaseAnalytics" ]; then
+    echo "FirebaseAnalytics not found"
+    exit 1
+  fi
+  if [ -d "FirebaseAnalyticsWithoutAdIdSupport" ]; then
+    echo "FirebaseAnalyticsWithoutAdIdSupport already exists"
+    exit 1
+  fi
+  cp -r FirebaseAnalytics FirebaseAnalyticsWithoutAdIdSupport
+  rm -rf FirebaseAnalyticsWithoutAdIdSupport/GoogleAppMeasurementIdentitySupport.xcframework
+  echo "FirebaseAnalyticsWithoutAdIdSupport is ready for distribution"
+}
+
 # Exit when any command fails
 set -e
 set -o pipefail
 
 # Repos
 firebase_repo="https://github.com/firebase/firebase-ios-sdk"
-xcframeworks_repo="https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks"
+# xcframeworks_repo="https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks"
+xcframeworks_repo="https://github.com/vvisionnn/firebase-ios-sdk-xcframeworks"
 
 # Release versions
 latest=$(latest_release_number $firebase_repo)
@@ -302,6 +325,7 @@ if [[ $latest != $current || $debug ]]; then
         unzip -q Firebase.zip
         echo "Preparing xcframeworks for distribution..."
         cd Firebase
+        preprocesing_firebase_sdk
         rename_frameworks "_"
         zip_frameworks
         echo "Creating distribution files..."
