@@ -166,9 +166,10 @@ write_target() {
       dependencies: [
         \"Firebase\"" >>$output
   # All targets depend on the core FirebaseAnalytics binaries
-  if [ $target != "FirebaseAnalytics" ]; then
+  # update to using `FirebaseAnalyticsWithoutAdIdSupport` instead of `FirebaseAnalytics`
+  if [ $target != "FirebaseAnalyticsWithoutAdIdSupport" ]; then
     printf ",
-        \"FirebaseAnalytics\"" >>$output
+        \"FirebaseAnalyticsWithoutAdIdSupport\"" >>$output
   fi
   # Library specific dependencies are expected to be inside the $library folder
   echo "$dependencies" | while read -r dependency; do
@@ -303,8 +304,13 @@ preprocesing_firebase_sdk() {
     echo "FirebaseAnalytics not found"
     exit 1
   fi
-  rm -rf FirebaseAnalytics/GoogleAppMeasurementIdentitySupport.xcframework
-  echo "FirebaseAnalyticsWithoutAdIdSupport (target: FirebaseAnalytics) is ready for distribution"
+  if [ -d "FirebaseAnalyticsWithoutAdIdSupport" ]; then
+    echo "FirebaseAnalyticsWithoutAdIdSupport already exists"
+    exit 1
+  fi
+  mv FirebaseAnalytics FirebaseAnalyticsWithoutAdIdSupport
+  rm -rf FirebaseAnalyticsWithoutAdIdSupport/GoogleAppMeasurementIdentitySupport.xcframework
+  echo "FirebaseAnalyticsWithoutAdIdSupport is ready for distribution"
 }
 
 # Exit when any command fails
