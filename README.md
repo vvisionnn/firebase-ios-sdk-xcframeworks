@@ -1,5 +1,7 @@
+> [!IMPORTANT]  
 > reference: `https://github.com/akaffenberger/firebase-ios-sdk-xcframeworks`
 
+> [!CAUTION]
 > Different from the original: **ALL** analytics removed IDFA tracking (like the official sdk `FirebaseAnalyticsWithoutAdIdSupport` product)
 
 # Firebase xcframework integration with SPM
